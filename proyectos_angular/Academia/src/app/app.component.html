@@ -1,0 +1,12 @@
+<div class="cursos">
+  <h3> Listado de cursos </h3>
+
+  <ul>
+    <li *ngFor="let curso of listaCursos; index as i">
+      <span (click)="buscarCurso(curso)">{{curso}}</span>
+    </li>
+  </ul>
+    
+    
+  
+  </div>
