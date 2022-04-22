@@ -9,24 +9,20 @@ import { AcademiaService } from 'src/app/service/academia.service';
 })
 export class AppComponent {
   
-  listaCursos: string[];
+  listaCursos: String[]|undefined;
+  curso: string="";
+  alumnos: Alumno[]|undefined;
 
   constructor(private _academiaService: AcademiaService){
 
-    this._academiaService.listarCursos.subscribe(data => );
-    this._academiaService = _academiaService;
-   
-    
-
+    _academiaService.listarCursos().subscribe(data => this.listaCursos=data);
+  
 
   }
 
-  buscarCurso(curso:string) {
+  buscarCurso() {
 
-    this.
-
-
-    
+    this._academiaService.buscar(this.curso).subscribe(data => this.alumnos=data)
   }
 
 }

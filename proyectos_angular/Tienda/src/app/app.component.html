@@ -1,8 +1,11 @@
 <div class="container">
   Introduce sección:<input type="text" [(ngModel)]="seccion">
+
   <br><br>
+  
   <input type="button" (click)="busqueda()" value="Buscar">
-  <table border="1" *ngIf="productos"> 
+  
+  <table border="1">
     <thead><tr><th>Producto</th><th>Precio</th><th>Stock</th></tr></thead>
     <tbody >
       <tr *ngFor="let p of productos">
@@ -11,6 +14,7 @@
     </tbody>
 
   </table>
+
   <br><br>
   <a href="inicio.jsp">Volver</a>
 </div>

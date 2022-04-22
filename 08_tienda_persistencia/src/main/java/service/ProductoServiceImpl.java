@@ -1,14 +1,13 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import model.Producto;
@@ -20,34 +19,50 @@ public class ProductoServiceImpl implements ProductoService {
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	@Override
+	@Transactional
 	public List<Producto> buscarSeccion(String seccion) {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "select p from Producto p where seccion=?1";
+		TypedQuery<Producto> query = entityManager.createQuery(jpql, Producto.class);
+		query.setParameter(1, seccion);
+		List<Producto> res = query.getResultList();
+		return res;
+		
 	}
 
-	@Override
+	@Transactional
 	public void alta(Producto p) {
 		entityManager.persist(p);
 		
 	}
 
-	@Override
+	@Transactional
 	public void modificarPrecio(String nombre, double precioModificado) {
-		// TODO Auto-generated method stub
+	
+		String jpql= "update Producto p set p.precio=?1 where p.nombre=?2";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter(1, precioModificado);
+		query.setParameter(2, nombre);
+		int res = query.executeUpdate();
+		
 		
 	}
 
-	@Override
+	@Transactional
 	public void eliminar(String nombre) {
-		// TODO Auto-generated method stub
+	
+		String jpql= "delete Producto p where p.nombre=?1";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter(1, nombre);
+		int res = query.executeUpdate();
+	
+		
 		
 	}
 
-	@Override
+	@Transactional
 	public Producto buscarProducto(int idProducto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return entityManager.find(Producto.class, idProducto);
 	}
 	
 

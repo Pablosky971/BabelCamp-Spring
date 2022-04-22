@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Producto } from './model/Producto';
 import { ProductosService } from './service/productos.service';
-
 
 @Component({
   selector: 'app-root',
@@ -9,17 +8,12 @@ import { ProductosService } from './service/productos.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  seccion:string;
-  productos:Producto[];
+  seccion: string ="";
+  productos: Producto[] | undefined;
+  
+  constructor(private service : ProductosService){}
+  
 
-  constructor(private service:ProductosService) {
-
-  }
-
-  ngOnInit() {
-  }
-
- 
   busqueda() {
     this.service.buscar(this.seccion).subscribe(data => this.productos=data);
   }

@@ -10,6 +10,7 @@ export class AcademiaService {
   //url:string="http://localhost:8080/05_tienda_spring_ajax/Buscador";
   urlCursos:string="Cursos";
   urlBuscar:string="Buscar";
+  cursos:string[]|undefined;
 
 
 

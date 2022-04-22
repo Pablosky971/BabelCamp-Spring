@@ -1,12 +1,37 @@
 <div class="cursos">
   <h3> Listado de cursos </h3>
 
-  <ul>
-    <li *ngFor="let curso of listaCursos; index as i">
-      <span (click)="buscarCurso(curso)">{{curso}}</span>
-    </li>
-  </ul>
-    
-    
+  <select name ="listaCursos" [(ngModel)]="curso">
+    <option *ngFor="let curso of listaCursos">
+      {{curso}}
+    </option>
+  </select>
+
+  <input type="button" (click)="buscarCurso()" value="Buscar">
+  <br>
+  <br>
+
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Curso</th>
+      <th>Nota</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let a of alumnos">
+      
+      <td>{{a.nombre}}</td>
+      <td>{{a.curso}}</td>
+      <td>{{a.nota}}</td>
+    </tr>
+  </tbody>
+  </table>
+  
+  <br>
+  <a href="inicio.jsp">Volver</a>
   
   </div>
