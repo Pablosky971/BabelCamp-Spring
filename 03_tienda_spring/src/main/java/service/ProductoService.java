@@ -10,6 +10,6 @@ public interface ProductoService {
 	void alta(Producto p);
 	void modificarPrecio(String nombre, double precioModificado);
 	void eliminar(String nombre);
-	Producto buscarProducto(int idProducto);
+
 
 }

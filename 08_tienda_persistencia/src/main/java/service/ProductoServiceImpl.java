@@ -6,9 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.Producto;
 
@@ -42,7 +42,7 @@ public class ProductoServiceImpl implements ProductoService {
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter(1, precioModificado);
 		query.setParameter(2, nombre);
-		int res = query.executeUpdate();
+		query.executeUpdate();
 		
 		
 	}
@@ -53,7 +53,7 @@ public class ProductoServiceImpl implements ProductoService {
 		String jpql= "delete Producto p where p.nombre=?1";
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter(1, nombre);
-		int res = query.executeUpdate();
+		query.executeUpdate();
 	
 		
 		
@@ -64,6 +64,17 @@ public class ProductoServiceImpl implements ProductoService {
 		
 		return entityManager.find(Producto.class, idProducto);
 	}
+
+	@Override
+	public Producto buscarProductoNombre(String nombre) {
+		String jpql = "select p from Producto p where nombre=?1";
+		TypedQuery<Producto> query = entityManager.createQuery(jpql, Producto.class);
+		query.setParameter(1, nombre);
+		List<Producto> res = query.getResultList();
+		return res.size()>0?res.get(0):null;
+	}
+	
+	
 	
 
 	
