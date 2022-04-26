@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement // Habilitar la transaccionabilidad mediante anotaciones.
 @PropertySource(value = "classpath:/config/application.properties")
 @Configuration
-@ComponentScan(basePackages = {"service"})
+@ComponentScan(basePackages = {"service", "dao"})
 public class ServiceConfig {
 	@Value("${driver}")
 	String driver;
@@ -50,7 +50,7 @@ public class ServiceConfig {
 		@Bean
 		public LocalContainerEntityManagerFactoryBean factory(DataSource dataSource, HibernateJpaVendorAdapter adapter) {
 			LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-			factory.setPersistenceUnitName("tiendaPU");
+			factory.setPersistenceUnitName("formacionPU");
 			factory.setDataSource(dataSource);
 			factory.setPackagesToScan("model");
 			factory.setJpaVendorAdapter(adapter);
