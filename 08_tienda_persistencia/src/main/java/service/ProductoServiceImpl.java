@@ -74,6 +74,13 @@ public class ProductoServiceImpl implements ProductoService {
 		return res.size()>0?res.get(0):null;
 	}
 	
+	public double precioMedioSeccion(String seccion) {
+		String jpql = "select avg(p.precio) from Producto p where p.seccion=:seccion"; //avg es para calcular la media y es de sql
+		TypedQuery<Double> query = entityManager.createQuery(jpql, Double.class);
+		query.setParameter("seccion", seccion);
+		return query.getSingleResult(); //uso este metodo porque es un unico valor
+	}
+	
 	
 	
 

@@ -12,4 +12,5 @@ public interface FormacionService {
 	List<Curso> cursos();
 	List<Alumno> alumnosCurso(String nombreCurso);
 	void matricularAlumno(int idCurso, String usuario);
+	List<Alumno> alumnos();
 }

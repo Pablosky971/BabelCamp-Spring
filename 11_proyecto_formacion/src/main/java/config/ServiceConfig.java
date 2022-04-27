@@ -1,5 +1,7 @@
 package config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -53,6 +55,9 @@ public class ServiceConfig {
 			factory.setPersistenceUnitName("formacionPU");
 			factory.setDataSource(dataSource);
 			factory.setPackagesToScan("model");
+			Properties props = new Properties();
+			props.put("hibernate.enable_lazy_load_no_trans", true);
+			factory.setJpaProperties(props);
 			factory.setJpaVendorAdapter(adapter);
 			return factory;
 		}

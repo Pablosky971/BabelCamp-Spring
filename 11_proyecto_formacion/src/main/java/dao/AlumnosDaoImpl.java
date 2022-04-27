@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.Alumno;
+import model.Curso;
 
 @Repository
 public class AlumnosDaoImpl implements AlumnosDao {
@@ -51,6 +52,15 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	public void update(Alumno alumno) {
 		entityManager.merge(alumno);
 
+	}
+
+
+	@Override
+	public List<Alumno> findAll() {
+		String jpql = "select a from Alumno a";
+		TypedQuery<Alumno> query = entityManager.createQuery(jpql, Alumno.class);
+		List<Alumno> alumnos = query.getResultList();
+		return alumnos.size()>0 ? alumnos :null;
 	}
 
 }

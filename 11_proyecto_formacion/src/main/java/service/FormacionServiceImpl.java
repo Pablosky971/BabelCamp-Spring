@@ -43,6 +43,12 @@ public class FormacionServiceImpl implements FormacionService {
 		
 		return cursosDao.findAll();
 	}
+	
+	@Override
+	public List<Alumno> alumnos() {
+		
+		return alumnosDao.findAll();
+	}
 
 	@Override
 	public List<Alumno> alumnosCurso(String nombreCurso) {

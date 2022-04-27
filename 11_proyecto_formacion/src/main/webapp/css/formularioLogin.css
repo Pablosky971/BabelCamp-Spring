@@ -1,0 +1,23 @@
+body {
+	background-color: aliceblue;
+}
+
+fieldset {
+	height: 30%;
+	background-color: white;
+}
+input:hover {
+	
+	background-color: gold;
+	
+}
+
+input {
+	border-radius: 10px;
+	margin: auto;
+}
+form {
+	width: 100%;
+	hight: 100%;
+}
+

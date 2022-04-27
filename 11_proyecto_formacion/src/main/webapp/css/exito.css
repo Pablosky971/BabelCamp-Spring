@@ -1,0 +1,29 @@
+
+h1 { 
+	text-align: center;
+}
+body {
+	background-color: aliceblue;
+}
+
+nav {
+	padding-left: 3%;
+	border-radius: 10px;
+	background-color: white;
+	position: absolute;
+	top: 20%;
+	left: 1.5%;
+	width: 94%;
+	height: 20%;
+	display: block;
+}
+
+a { 
+	
+	display: block;
+}
+
+a:hover {
+	color: lime;
+	
+}

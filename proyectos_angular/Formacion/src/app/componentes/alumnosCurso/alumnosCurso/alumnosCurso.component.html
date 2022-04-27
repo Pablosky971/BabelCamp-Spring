@@ -1,0 +1,40 @@
+<div class="alumnos">
+  <h3> Alumnos </h3>
+
+  <select name ="listaCursos" [(ngModel)]="curso">
+    <option *ngFor="let curso of listaCursos">
+      {{curso}}
+    </option>
+  </select>
+
+  <input type="button" (click)="buscarAlumnosCurso()" value="Buscar">
+  <br>
+  <br>
+
+  <table border="1">
+    <thead>
+    <tr>
+
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Edad</th>
+
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let a of alumnos">
+      
+      <td>{{a.nombre}}</td>
+      <td>{{a.email}}</td>
+      <td>{{a.edad}}</td>
+    </tr>
+  </tbody>
+  </table>
+  
+  <br>
+  <button [routerLink]="['']">Volver</button>
+  
+  </div>

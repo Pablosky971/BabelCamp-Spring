@@ -26,14 +26,14 @@ public class MvcConfig implements WebMvcConfigurer {
 	// Para establecer una página de bienvenida.
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry ) {
-		registry.addViewController("/").setViewName("inicio");
+		registry.addViewController("/").setViewName("login");
 	}
 
 	//Registro de los recursos estaticos (imagenes, videos, documentos,...)
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	registry.addResourceHandler("/*").addResourceLocations("/");
-	/*registry.addResourceHandler("/*.gif").addResourceLocations("/imagenes");
-	registry.addResourceHandler("/*.css").addResourceLocations("/estilos");*/
+	registry.addResourceHandler("/*.png").addResourceLocations("/img");
+	registry.addResourceHandler("/*.css").addResourceLocations("/css");
 	}
 }

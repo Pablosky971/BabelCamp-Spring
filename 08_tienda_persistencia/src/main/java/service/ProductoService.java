@@ -12,5 +12,6 @@ public interface ProductoService {
 	void eliminar(String nombre);
 	Producto buscarProducto(int idProducto);
 	Producto buscarProductoNombre(String nombre);
+	public double precioMedioSeccion(String seccion);
 
 }
