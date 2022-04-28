@@ -1,0 +1,10 @@
+body {
+	background-color: aliceblue;
+}
+
+img.caraerror {
+	position: absolute;
+	width: 20%;
+	top: 15%;
+	left: 30%;
+}

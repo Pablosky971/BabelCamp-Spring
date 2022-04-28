@@ -1,0 +1,9 @@
+Aplicación formación completa:
+- Alta de alumnos. Debe permitir grabar nuevos alumnos, pero sin repetir usuario
+- Alta de cursos. Permite grabar nuevos cursos, pero no debe permitir repetir nombre de curso
+- Matricular alumnos. Aparece la lista de alumnos para elegir el alumno a matricular. Una vez elegido
+en la misma página se le pide mediate otra lista que elija el curso donde se le va a matricualar. En esta
+lista, solo deben aparecer los cursos en los que el alumno no está matriculado
+- Consulta de matriculas. Selecionamos rango de fechas y se muestra las matriculas de todos los cursos
+comenzados entre ese rango de fechas. Se muestra nombre del curso, nombre del alumno y fecha de inicio de ese
+curso
