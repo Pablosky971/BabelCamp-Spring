@@ -3,6 +3,7 @@ import { Alumno } from './model/Alumno';
 import { Curso } from './model/Curso';
 
 import { FormacionService } from 'src/app/service/formacion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,43 @@ import { FormacionService } from 'src/app/service/formacion.service';
 export class AppComponent {
   
   listaAlumnos: Alumno[]|undefined;
+  listaCursos: Curso[]|undefined;
+  curso: string = '';
+  alumno: string = '';
+  alumnosCurso: Alumno[] | undefined;
+  cursosAlumno: Curso[] | undefined;
+
+  constructor(private _formacionService: FormacionService, private router : Router) {
+
+    _formacionService.listarCursos().subscribe((data) => (this.listaCursos = data));
+    _formacionService.listarAlumnos().subscribe((data) => (this.listaAlumnos = data));
+
+  }
+
   
-  cursos: Curso[]|undefined;
-  
+  busquedaAlumnosCurso() {
+    this._formacionService
+      .buscarAlumnosCurso(this.curso)
+      .subscribe((data) => (this.alumnosCurso = data));
+   
+  }
 
-  nombre:string;
-  usuario:string;
+  busquedaCursosAlumno() {
+    this._formacionService
+      .buscarCursosAlumno(this.alumno)
+      .subscribe((data) => (this.cursosAlumno = data));
+    
+  }
 
-  constructor(private _formacionService: FormacionService){
+  enrutarAlumnosCurso() {
+    this.router.navigate(['/alumnosByCurso']);
+  }
 
+  enrutarCursosAlumno() {
+    this.router.navigate(['/cursosByAlumno']);
+  }
+  volver() {
+    this.router.navigate(['']);
   }
 
 }

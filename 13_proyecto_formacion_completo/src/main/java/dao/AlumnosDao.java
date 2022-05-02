@@ -19,6 +19,5 @@ public interface AlumnosDao extends JpaRepository<Alumno, String>{
 	// void update(Alumno alumno); No hace falta indicarlo; JPA ya lo incorpora p.d.
 	//List<Alumno> findAll(); No hace falta indicarlo; JPA ya lo incorpora p.d.
 
-	@Query("select c from Curso c join c.alumnos a where a.usuario!=?1")
-	List<Curso> findByFechaInicioAndFin(Date fechaInicio, Date fechaFin);
+	
 }

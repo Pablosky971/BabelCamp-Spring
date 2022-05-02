@@ -105,7 +105,8 @@ public class FormacionController {
 //	}
 	
 	@GetMapping(value="CursosFechas", produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Curso> cursosFechas(@RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy/MM/dd") Date fechaInicio, @RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy/MM/dd")  Date fechaFin) { 
+	public @ResponseBody List<Curso> cursosFechas(@RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
+			@RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date fechaFin) { 
 		
 		
 			return formacionService.consultarMatriculas(fechaInicio, fechaFin);

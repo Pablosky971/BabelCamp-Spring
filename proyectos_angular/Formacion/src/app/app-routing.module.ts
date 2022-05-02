@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { AlumnosCursoComponent } from './componentes/alumnosCurso/alumnosCurso/alumnosCurso.component';
-import { CursosAlumnoComponent } from './componentes/cursosAlumno/cursosAlumno/cursosAlumno.component';
+import { AlumnosCursoComponent } from './alumnosCurso/alumnosCurso.component';
+import { CursosAlumnoComponent } from './cursosAlumno/cursosAlumno.component';
 
 const routes: Routes = [
   
@@ -11,7 +11,7 @@ const routes: Routes = [
 },
 
 {
-  path: '/componentAlumnosCurso',
+  path: 'componentAlumnosCurso',
   component: AlumnosCursoComponent
 },
 

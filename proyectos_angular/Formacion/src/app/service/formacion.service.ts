@@ -9,15 +9,13 @@ import { Curso } from '../model/Curso';
 })
 export class FormacionService {
 
-  urlAlumnos:string="Alumnos";
-  urlCursos:string="Cursos";
-  urlAlumnosCurso:string="AlumnosCurso"
-  urlCursoAlumnos:string="CursoAlumnos"
+  urlAlumnos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/Alumnos";
+  urlCursos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/Cursos";
+  urlAlumnosCurso:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/AlumnosCurso"
+  urlCursoAlumnos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/CursoAlumnos"
   
 
-  cursos:Curso[]|undefined;
-  alumnos:Alumno[]|undefined;
-
+  cursos:string[]|undefined;
 
   constructor(private http:HttpClient) {}
    

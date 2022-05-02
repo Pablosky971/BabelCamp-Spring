@@ -1,11 +1,12 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlumnosCursoComponent } from './componentes/alumnosCurso/alumnosCurso/alumnosCurso.component';
-import { CursosAlumnoComponent } from './componentes/cursosAlumno/cursosAlumno/cursosAlumno.component';
+import { AlumnosCursoComponent } from './alumnosCurso/alumnosCurso.component';
+import { CursosAlumnoComponent } from './cursosAlumno/cursosAlumno.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CursosAlumnoComponent } from './componentes/cursosAlumno/cursosAlumno/c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
+    HttpClientModule, 
     FormsModule
   ],
   providers: [],
