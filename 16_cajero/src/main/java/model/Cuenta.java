@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,8 +19,7 @@ import lombok.Setter;
 @Entity
 @Table(name="cuentas")
 public class Cuenta {
-	
-	
+	@Id
 	private int numeroCuenta;
 	private double saldo;
 	private String tipoCuenta;

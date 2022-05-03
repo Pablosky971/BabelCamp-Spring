@@ -40,7 +40,7 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 	@Override
 	public Matricula dtoToMatricula(MatriculaDto dto) {
 		//return new Matricula(dto.getNota(), dtoToCurso(dto.getCursoDto()),dtoToAlumno(dto.getAlumnoDto()) );
-		return new Matricula(new MatriculaPK(dto.getCurso().getIdCurso(),dto.getAlumno().getUsuario(),dto.getNota(),null,null);
+		return new Matricula(new MatriculaPK(dto.getCurso().getIdCurso(),dto.getAlumno().getUsuario()),dto.getNota(),null,null);
 	}
 }
 

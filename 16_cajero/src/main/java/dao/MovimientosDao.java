@@ -1,17 +1,17 @@
 package dao;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 import model.Movimiento;
+
 
 public interface MovimientosDao extends JpaRepository<Movimiento, Integer> {
 
 	
-	
-//	@Query("update ")
-//	Integer ingreso(double cantidad, int numeroCuenta);
-//	
-//	@Query("update ")
-//	Integer extraccion(double cantidad, int numeroCuenta);
+	@Query("select m from Movimiento m where m.fecha between ?1 and ?2 and m.cuenta.numeroCuenta=?3")
+	List<Movimiento> findMovimientosCuentaFechas(Date fechaInicio, Date fechaFin, int numeroCuenta);
 }

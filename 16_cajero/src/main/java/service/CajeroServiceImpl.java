@@ -1,5 +1,8 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import dao.MovimientosDao;
 import dto.CuentaDto;
 import dto.MovimientoDto;
 import model.Cuenta;
+import model.Movimiento;
 
 @Service
 public class CajeroServiceImpl implements CajeroService {
@@ -19,25 +23,25 @@ public class CajeroServiceImpl implements CajeroService {
 	@Autowired
 	ConversorEntityDto conversor;
 	
-	ClientesDao clienteDao;
+	ClientesDao clientesDao;
 	
-	CuentasDao cuentaDao;
+	CuentasDao cuentasDao;
 	
-	MovimientosDao movimientoDao;
+	MovimientosDao movimientosDao;
 	
 	
 
-	public CajeroServiceImpl(@Autowired ClientesDao clienteDao, @Autowired CuentasDao cuentaDao, @Autowired MovimientosDao movimientoDao) {
+	public CajeroServiceImpl(@Autowired ClientesDao clientesDao, @Autowired CuentasDao cuentasDao, @Autowired MovimientosDao movimientosDao) {
 		super();
-		this.clienteDao = clienteDao;
-		this.cuentaDao = cuentaDao;
-		this.movimientoDao = movimientoDao;
+		this.clientesDao = clientesDao;
+		this.cuentasDao = cuentasDao;
+		this.movimientosDao = movimientosDao;
 	}
 
 	
 	public CuentaDto validarCuenta(int numeroCuenta) {
 		
-		Optional<Cuenta> cuenta = cuentaDao.findById(numeroCuenta);
+		Optional<Cuenta> cuenta = cuentasDao.findById(numeroCuenta);
 		
 		if(cuenta.isPresent())
 		return conversor.cuentaToDto(cuenta.get());
@@ -49,21 +53,51 @@ public class CajeroServiceImpl implements CajeroService {
 	
 	public void ingreso(MovimientoDto m) {
 		
-		 movimientoDao.save(conversor.dtoToMovimiento(m));
-		 
-		 Cuenta c = cuentaDao.cuentaMovimiento(m.getCuenta().getNumeroCuenta());
-		 cuentaDao.save(c);
-		 
-		 
-		
+		 movimientosDao.save(conversor.dtoToMovimiento(m));
+		 cuentasDao.ingreso(m.getCantidad(), m.getCuenta().getNumeroCuenta());
 		
 	}
 
 
-	public boolean extraccion(MovimientoDto m) {
+	public void extraccion(MovimientoDto m) {
 		
-		return false;
+		 movimientosDao.save(conversor.dtoToMovimiento(m));
+		 cuentasDao.extraccion(m.getCantidad(), m.getCuenta().getNumeroCuenta());
+		
 	}
+
+
 	
+
+	public void transferencia(MovimientoDto movimientoIngreso, MovimientoDto movimientoExtraccion) {
+		
+		this.ingreso(movimientoIngreso);
+		this.extraccion(movimientoExtraccion);
+		
+		
+		
+	}
+
+
+	@Override
+	public List<MovimientoDto> movimientos(Date fechaInicio, Date fechaFin, int numeroCuenta) {
+		List<MovimientoDto> res = new ArrayList<>();
+		List<Movimiento> movimientos = movimientosDao.findMovimientosCuentaFechas(fechaInicio, fechaFin, numeroCuenta);
+		
+		for(Movimiento m : movimientos) {
+			MovimientoDto dto = conversor.movimientoToDto(m);
+			res.add(dto);
+		}
+
+		 return res;
+	}
+
+
+	@Override
+	public double saldoCuenta(int numeroCuenta) {
+		
+		return cuentasDao.saldoCuenta(numeroCuenta);
+	}
+
 
 }

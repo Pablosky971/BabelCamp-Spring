@@ -16,7 +16,7 @@ public interface ConversorEntityDto {
 	public Alumno dtoToAlumno(AlumnoDto dto);
 	
 	public MatriculaDto matriculaToDto(Matricula matricula);
-	public Matricula dtoToMatricula(Matricula dto);
+	public Matricula dtoToMatricula(MatriculaDto dto);
 
 	
 }

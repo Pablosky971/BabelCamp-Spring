@@ -36,14 +36,16 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 	}
 
 
-	public MovimientoDto movimientotoDto(Movimiento movimiento) {
+	public MovimientoDto movimientoToDto(Movimiento movimiento) {
 	
-		return new MovimientoDto(movimiento.getIdMovimiento(),movimiento.getCantidad(),movimiento.getFecha(),movimiento.getOperacion(),movimiento.getCuenta());
+		return new MovimientoDto(movimiento.getIdMovimiento(),movimiento.getCantidad(),movimiento.getFecha(),movimiento.getOperacion(),cuentaToDto(movimiento.getCuenta()));
 	}
 
 	public Movimiento dtoToMovimiento(MovimientoDto dto) {
 		
 		return new Movimiento(dto.getIdMovimiento(),dto.getCantidad(),dto.getFecha(),dto.getOperacion());
 	}
+
+	
 
 }

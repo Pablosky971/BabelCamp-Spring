@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,13 +36,13 @@ public class Movimiento {
 	private Operacion operacion;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="numeroCuenta", referencedColumnName="numeroCuenta",insertable=false,updatable=false)
+	@JoinColumn(name="idCuenta", referencedColumnName="numeroCuenta",insertable=false,updatable=false)
 	Cuenta cuenta;
 
-	public Movimiento(int idMovimiento, double cantidad, Date fecha, Operacion operacion) {
+	public Movimiento(int idMovimiento, double cantidad, Date date, Operacion operacion) {
 		this.idMovimiento=idMovimiento;
 		this.cantidad=cantidad;
-		this.fecha=fecha;
+		this.fecha=date;
 		this.operacion=operacion;
 	}
 }

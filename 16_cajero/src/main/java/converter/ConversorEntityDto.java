@@ -15,6 +15,6 @@ public interface ConversorEntityDto {
 	public CuentaDto cuentaToDto(Cuenta cuenta);
 	public Cuenta dtoToCuenta(CuentaDto dto);
 	
-	public MovimientoDto movimientotoDto(Movimiento movimiento);
+	public MovimientoDto movimientoToDto(Movimiento movimiento);
 	public Movimiento dtoToMovimiento(MovimientoDto dto);
 }
