@@ -42,11 +42,11 @@ export class AppComponent {
   }
 
   enrutarAlumnosCurso() {
-    this.router.navigate(['/alumnosByCurso']);
+    this.router.navigate(['componentAlumnosCurso']);
   }
 
   enrutarCursosAlumno() {
-    this.router.navigate(['/cursosByAlumno']);
+    this.router.navigate(['componentCursosAlumno']);
   }
   volver() {
     this.router.navigate(['']);

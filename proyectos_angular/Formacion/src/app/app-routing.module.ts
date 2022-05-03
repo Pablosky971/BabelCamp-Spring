@@ -6,9 +6,7 @@ import { CursosAlumnoComponent } from './cursosAlumno/cursosAlumno.component';
 
 const routes: Routes = [
   
-  {  path: '',
-  component: AppComponent
-},
+  
 
 {
   path: 'componentAlumnosCurso',

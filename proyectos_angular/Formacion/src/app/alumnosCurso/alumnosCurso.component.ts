@@ -14,7 +14,7 @@ export class AlumnosCursoComponent implements OnInit {
   listaCursos: Curso[]|undefined;
   nombre:string="";
   alumnos:Alumno[]|undefined;
-  curso: Curso;
+  curso: string;
  
 
   constructor(private _formacionService: FormacionService, private router:Router) {
@@ -24,7 +24,7 @@ export class AlumnosCursoComponent implements OnInit {
 
    buscarAlumnosCurso() {
    
-    this._formacionService.buscarAlumnosCurso(this.nombre).subscribe(data => this.alumnos=data);
+    this._formacionService.buscarAlumnosCurso(this.curso).subscribe(data => this.alumnos=data);
   }
   ngOnInit() {
   }

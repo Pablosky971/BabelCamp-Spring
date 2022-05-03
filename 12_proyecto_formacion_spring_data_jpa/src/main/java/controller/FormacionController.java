@@ -34,7 +34,7 @@ public class FormacionController {
 		
 		if(a != null) {
 			sesion.setAttribute("alumno",a);
-			return "login";
+			return "index";
 			
 		} else {
 			return "error";
