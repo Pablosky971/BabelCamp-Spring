@@ -13,6 +13,7 @@ public interface AlumnosDao extends JpaRepository<Alumno, String>{
 	Alumno findByUsuarioAndPassword(String usuario, String password);
 	@Query("select a from Alumno a join a.matriculas m where m.curso.nombre=?1")
 	List<Alumno> findByCurso(String nombreCurso);
+
 	//Alumno findById(String usuario); No hace falta indicarlo; JPA ya lo incorpora p.d.
 	// void update(Alumno alumno); No hace falta indicarlo; JPA ya lo incorpora p.d.
 	//List<Alumno> findAll(); No hace falta indicarlo; JPA ya lo incorpora p.d.

@@ -20,7 +20,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource(value = "classpath:/config/application.properties")
 @Configuration
 @ComponentScan(basePackages = {"service","converters"})
-@EnableJpaRepositories(basePackages = {"dao"},entityManagerFactoryRef = "factory", transactionManagerRef = "txManager")
+@EnableJpaRepositories(basePackages = {"dao"},
+entityManagerFactoryRef = "factory",
+transactionManagerRef = "txManager")
 public class ServiceConfig {
 	@Value("${driver}")
 	String driver;
@@ -56,7 +58,7 @@ public class ServiceConfig {
 			LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 			factory.setPersistenceUnitName("formacionPU");
 			factory.setDataSource(dataSource);
-			factory.setPackagesToScan("model");
+			factory.setPackagesToScan("modelo");
 			Properties props = new Properties();
 			props.put("hibernate.enable_lazy_load_no_trans", true);
 			factory.setJpaProperties(props);

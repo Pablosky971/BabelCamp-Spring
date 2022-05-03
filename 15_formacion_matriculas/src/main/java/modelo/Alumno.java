@@ -29,7 +29,7 @@ public class Alumno {
 		private String nombre;
 		private String email;
 		private Integer edad;
-		@OneToMany
+		@OneToMany(mappedBy="alumno")
 		private List<Matricula> matriculas;
 		
 		public Alumno(String usuario, String password, String nombre, String email, Integer edad) {

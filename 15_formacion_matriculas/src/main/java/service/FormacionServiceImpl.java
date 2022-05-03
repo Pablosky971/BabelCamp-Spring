@@ -33,7 +33,7 @@ public class FormacionServiceImpl implements FormacionService {
 	MatriculasDao matriculasDao;
 	
 	
-	public FormacionServiceImpl(@Autowired AlumnosDao alumnosDao,@Autowired CursosDao cursosDao,@Autowired MatriculasDao matriculasDaoO) {
+	public FormacionServiceImpl(@Autowired AlumnosDao alumnosDao,@Autowired CursosDao cursosDao,@Autowired MatriculasDao matriculasDao) {
 		this.alumnosDao=alumnosDao;
 		this.cursosDao=cursosDao;
 		this.matriculasDao=matriculasDao;

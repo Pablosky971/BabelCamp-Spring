@@ -36,7 +36,7 @@ public class Curso {
 	private double precio;
 	@Temporal(TemporalType.DATE) // Es recomendable, aunque no obligatorio, especificar el tipo de fecha concreto que se devuelve.
 	private Date fechaInicio;
-	@OneToMany
+	@OneToMany(mappedBy="curso")
 	private List<Matricula> matriculas;
 	
 	// Incluimos estos constructores extra por si acaso.
