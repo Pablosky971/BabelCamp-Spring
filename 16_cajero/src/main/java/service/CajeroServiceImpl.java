@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import converter.ConversorEntityDto;
 import dao.ClientesDao;
@@ -16,6 +17,7 @@ import dto.CuentaDto;
 import dto.MovimientoDto;
 import model.Cuenta;
 import model.Movimiento;
+import model.Operacion;
 
 @Service
 public class CajeroServiceImpl implements CajeroService {
@@ -50,36 +52,54 @@ public class CajeroServiceImpl implements CajeroService {
 		
 	}
 
+	@Transactional
+	public void ingreso(double cantidad, int numeroCuenta) {
+		
+		Optional<Cuenta> c = cuentasDao.findById(numeroCuenta);
+		Movimiento m = new Movimiento();
+		m.setCantidad(cantidad);
+		m.setFecha(new Date());
+		m.setOperacion(Operacion.EXTRACCION);
+		
+		if(c.isPresent()) {
+		m.setCuenta(c.get());
+		}
+		 movimientosDao.save(m);
+		 cuentasDao.actualizarSumaCantidad(cantidad, numeroCuenta);
+		
+	}
+
+	@Transactional
+	public void extraccion(double cantidad, int numeroCuenta) {
+		
+		Optional<Cuenta> c = cuentasDao.findById(numeroCuenta);
+		Movimiento m = new Movimiento();
+		m.setCantidad(cantidad);
+		m.setFecha(new Date());
+		m.setOperacion(Operacion.EXTRACCION);
+		
+		if(c.isPresent()) {
+		m.setCuenta(c.get());
+		}
+		 movimientosDao.save(m);
+		 cuentasDao.actualizarRestaCantidad(cantidad, numeroCuenta);
+		
+	}
+
+
 	
-	public void ingreso(MovimientoDto m) {
+	@Transactional
+	public void transferencia(double cantidad, int numeroCuentaRemitente, int numeroCuentaDestinatario) {
 		
-		 movimientosDao.save(conversor.dtoToMovimiento(m));
-		 cuentasDao.ingreso(m.getCantidad(), m.getCuenta().getNumeroCuenta());
+		this.ingreso(cantidad, numeroCuentaDestinatario);
+		this.extraccion(cantidad, numeroCuentaRemitente);
 		
-	}
-
-
-	public void extraccion(MovimientoDto m) {
 		
-		 movimientosDao.save(conversor.dtoToMovimiento(m));
-		 cuentasDao.extraccion(m.getCantidad(), m.getCuenta().getNumeroCuenta());
 		
 	}
 
 
 	
-
-	public void transferencia(MovimientoDto movimientoIngreso, MovimientoDto movimientoExtraccion) {
-		
-		this.ingreso(movimientoIngreso);
-		this.extraccion(movimientoExtraccion);
-		
-		
-		
-	}
-
-
-	@Override
 	public List<MovimientoDto> movimientos(Date fechaInicio, Date fechaFin, int numeroCuenta) {
 		List<MovimientoDto> res = new ArrayList<>();
 		List<Movimiento> movimientos = movimientosDao.findMovimientosCuentaFechas(fechaInicio, fechaFin, numeroCuenta);
@@ -93,7 +113,7 @@ public class CajeroServiceImpl implements CajeroService {
 	}
 
 
-	@Override
+	
 	public double saldoCuenta(int numeroCuenta) {
 		
 		return cuentasDao.saldoCuenta(numeroCuenta);

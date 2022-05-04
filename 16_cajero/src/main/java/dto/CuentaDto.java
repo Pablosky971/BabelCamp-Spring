@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,6 @@ public class CuentaDto {
 	private int numeroCuenta;
 	private double saldo;
 	private String tipoCuenta;
+	
 
 }

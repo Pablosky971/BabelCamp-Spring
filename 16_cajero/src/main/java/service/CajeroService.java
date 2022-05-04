@@ -9,9 +9,9 @@ import dto.MovimientoDto;
 public interface CajeroService {
 	
 	CuentaDto validarCuenta(int numeroCuenta);
-	void ingreso(MovimientoDto m);
-	void extraccion(MovimientoDto m);
-	void transferencia(MovimientoDto movimientoIngreso, MovimientoDto movimientoExtraccion);
+	void ingreso(double cantidad, int numeroCuenta);
+	void extraccion(double cantidad, int numeroCuenta);
+	void transferencia(double cantidad, int numeroCuentaRemitente, int numeroCuentaDestinatario);
 	List<MovimientoDto> movimientos(Date fechaInicio, Date fechaFin, int numeroCuenta);
 	double saldoCuenta(int numeroCuenta);
 

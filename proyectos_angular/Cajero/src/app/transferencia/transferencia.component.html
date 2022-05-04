@@ -1,0 +1,14 @@
+<h2>
+Transferencia
+</h2>
+
+<label for="cantidad"> Cantidad a transferir: </label>
+<input type="number" name="cantidad" [(ngModel)]="cantidad">
+<label for="numeroCuentaRemitente"> Número cuenta remitente: </label>
+<input type="number" name="numeroCuentaRemitente" [(ngModel)]="numeroCuentaRemitente">
+<label for="numeroCuentaDestinatario"> Número cuenta remitente: </label>
+<input type="number" name="numeroCuentaDestinatario" [(ngModel)]="numeroCuentaDestinatario">
+
+<input type="button" value="Ingresar" (click)="transferir()">
+
+<input type="submit" value="Volver" (click)="volver()">

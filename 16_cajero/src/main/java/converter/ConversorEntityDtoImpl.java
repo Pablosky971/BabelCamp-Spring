@@ -43,7 +43,7 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 
 	public Movimiento dtoToMovimiento(MovimientoDto dto) {
 		
-		return new Movimiento(dto.getIdMovimiento(),dto.getCantidad(),dto.getFecha(),dto.getOperacion());
+		return new Movimiento(dto.getIdMovimiento(),dto.getCantidad(),dto.getFecha(),dto.getOperacion(), dtoToCuenta(dto.getCuenta()));
 	}
 
 	

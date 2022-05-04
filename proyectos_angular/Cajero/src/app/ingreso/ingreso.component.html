@@ -1,0 +1,12 @@
+<h2>
+  Ingreso
+</h2>
+
+<label for="cantidad"> Cantidad a ingresar: </label>
+<input type="number" name="cantidad" [(ngModel)]="cantidad">
+<label for="numeroCuenta"> Número cuenta: </label>
+<input type="number" name="numeroCuenta" [(ngModel)]="numeroCuenta">
+
+<input type="button" value="Ingresar" (click)="ingreso()">
+
+<input type="submit" value="Volver" (click)="volver()">

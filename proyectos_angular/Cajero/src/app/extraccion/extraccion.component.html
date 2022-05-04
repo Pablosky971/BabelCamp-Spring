@@ -1,0 +1,12 @@
+<h2>
+ Extracción
+</h2>
+
+<label for="cantidad"> Cantidad a extraer: </label>
+<input type="number" name="cantidad" [(ngModel)]="cantidad">
+<label for="numeroCuenta"> Número cuenta: </label>
+<input type="number" name="numeroCuenta" [(ngModel)]="numeroCuenta">
+
+<input type="button" value="Extraer" (click)="extraccion()">
+
+<input type="submit" value="Volver" (click)="volver()">

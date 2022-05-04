@@ -32,41 +32,26 @@ public class CajeroController {
 	}
 
 	@PostMapping(value="Ingreso",produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void ingreso(@RequestParam("numeroCuenta") int numeroCuenta, @RequestParam("cantidad") double cantidad) {
-		MovimientoDto m = new MovimientoDto();
-		m.setCantidad(cantidad);
-		Calendar fecha = Calendar.getInstance();
-		m.setFecha(Date.from(fecha.toInstant()));
-		m.setCuenta(service.validarCuenta(numeroCuenta));
-		service.ingreso(m);
+	public @ResponseBody void ingreso(@RequestParam("cantidad") double cantidad, @RequestParam("numeroCuenta") int numeroCuenta) {
+		
+		service.ingreso(cantidad,numeroCuenta);
 	}
 	
 	@PostMapping(value="Extraccion",produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void extraccion(@RequestParam("numeroCuenta") int numeroCuenta, @RequestParam("cantidad") double cantidad) {
-		MovimientoDto m = new MovimientoDto();
-		m.setCantidad(cantidad);
-		Calendar fecha = Calendar.getInstance();
-		m.setFecha(Date.from(fecha.toInstant()));
-		m.setCuenta(service.validarCuenta(numeroCuenta));
-		service.extraccion(m);
+	public @ResponseBody void extraccion(@RequestParam("cantidad") double cantidad, @RequestParam("numeroCuenta") int numeroCuenta) {
+		
+		service.extraccion(cantidad,numeroCuenta);
 	}
 	
 	@PostMapping(value="Transferencia",produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody void transferencia(@RequestParam("numeroCuentaRemitente") int numeroCuentaRemitente, @RequestParam("numeroCuentaDestinatario") int numeroCuentaDestinatario, @RequestParam("cantidad") double cantidad) {
-		MovimientoDto ingreso = new MovimientoDto();
-		ingreso.setCantidad(cantidad);
-		Calendar fecha = Calendar.getInstance();
-		ingreso.setFecha(Date.from(fecha.toInstant()));
-		ingreso.setCuenta(service.validarCuenta(numeroCuentaRemitente));
+	public @ResponseBody void transferencia(@RequestParam("cantidad") double cantidad, @RequestParam("numeroCuentaRemitente") int numeroCuentaRemitente, @RequestParam("numeroCuentaDestinatario") int numeroCuentaDestinatario) {
 		
-		MovimientoDto extraccion = new MovimientoDto();
-		extraccion.setCantidad(cantidad);
-		ingreso.setFecha(Date.from(fecha.toInstant()));
-		extraccion.setCuenta(service.validarCuenta(numeroCuentaDestinatario));
 		
-		service.transferencia(ingreso,extraccion);
+		service.transferencia(cantidad,numeroCuentaRemitente,numeroCuentaDestinatario);
 		
 	}
+	
+	
 	
 	@GetMapping(value="Movimientos",produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<MovimientoDto> movimientos(@RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
@@ -74,6 +59,8 @@ public class CajeroController {
 			@RequestParam("numeroCuenta") int numeroCuenta) {
 		return service.movimientos(fechaInicio, fechaFin, numeroCuenta);
 	}
+	
+	
 	
 	@GetMapping(value="SaldoCuenta",produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody double saldoCuenta(@RequestParam("numeroCuenta") int numeroCuenta) {

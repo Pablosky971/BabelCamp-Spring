@@ -3,7 +3,7 @@ package model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,16 +35,13 @@ public class Movimiento {
 	private double cantidad;
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
+	@Enumerated(EnumType.STRING)
 	private Operacion operacion;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="idCuenta", referencedColumnName="numeroCuenta",insertable=false,updatable=false)
+	@JoinColumn(name="idCuenta", referencedColumnName="numeroCuenta")
+	@JsonIgnore
 	Cuenta cuenta;
 
-	public Movimiento(int idMovimiento, double cantidad, Date date, Operacion operacion) {
-		this.idMovimiento=idMovimiento;
-		this.cantidad=cantidad;
-		this.fecha=date;
-		this.operacion=operacion;
-	}
+	
 }
