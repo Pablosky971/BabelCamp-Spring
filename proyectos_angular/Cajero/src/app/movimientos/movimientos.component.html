@@ -1,3 +1,29 @@
-<p>
-  movimientos works!
-</p>
+<h2>
+  Movimientos
+  </h2>
+  
+  
+  <label for="numeroCuenta"> Número cuenta: </label>
+  <input type="number" name="numeroCuenta" [(ngModel)]="numeroCuenta">
+  <label for="fechaInicio"> Fecha de inicio: </label>
+  <input type="date" name="fechaInicio" [(ngModel)]="fechaInicio">
+  <label for="fechaFin"> Fecha de fin: </label>
+  <input type="date" name="numeroCuentaRemitente" [(ngModel)]="fechaFin">
+  
+  
+  <input type="button" value="Consultar movimientos" (click)="movimientos()">
+
+
+  <label for="saldo"> Saldo: </label>
+  <input type="number" name="saldo" [(ngModel)]="saldo">
+  <table border="1">
+    <thead><tr><th>Cantidad</th><th>Operación</th><th>Fecha</th></tr></thead>
+    <tbody >
+      <tr *ngFor="let m of listaMovimientos">
+        <td>{{m.cantidad}}</td><td>{{m.operacion}}</td><td>{{m.fecha}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+  
+  <input type="submit" value="Volver" (click)="volver()">

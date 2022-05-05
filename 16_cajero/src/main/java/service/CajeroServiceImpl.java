@@ -59,7 +59,7 @@ public class CajeroServiceImpl implements CajeroService {
 		Movimiento m = new Movimiento();
 		m.setCantidad(cantidad);
 		m.setFecha(new Date());
-		m.setOperacion(Operacion.EXTRACCION);
+		m.setOperacion("ingreso");
 		
 		if(c.isPresent()) {
 		m.setCuenta(c.get());
@@ -76,7 +76,7 @@ public class CajeroServiceImpl implements CajeroService {
 		Movimiento m = new Movimiento();
 		m.setCantidad(cantidad);
 		m.setFecha(new Date());
-		m.setOperacion(Operacion.EXTRACCION);
+		m.setOperacion("extraccion");
 		
 		if(c.isPresent()) {
 		m.setCuenta(c.get());

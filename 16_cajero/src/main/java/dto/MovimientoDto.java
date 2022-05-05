@@ -24,7 +24,7 @@ public class MovimientoDto {
 	private double cantidad;
 	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss")
 	private Date fecha;
-	private Operacion operacion;
+	private String operacion;
 	private CuentaDto cuenta;
 
 }

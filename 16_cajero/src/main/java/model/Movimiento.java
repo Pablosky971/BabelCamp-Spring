@@ -35,8 +35,8 @@ public class Movimiento {
 	private double cantidad;
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	@Enumerated(EnumType.STRING)
-	private Operacion operacion;
+	
+	private String operacion;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idCuenta", referencedColumnName="numeroCuenta")
