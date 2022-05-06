@@ -1,0 +1,16 @@
+<select name="cursos" [(ngModel)]="idCurso">
+  <option *ngFor="let curso of cursos" [ngValue]="curso.nombre">
+    {{ curso.nombre }}
+  </option>
+</select>
+
+<select name="alumnos" [(ngModel)]="alumno">
+  <option *ngFor="let alumno of alumnos">
+    {{ alumno.usuario }}
+  </option>
+</select>
+
+<input type="button" value="Matricular Alumno Curso" (click)="matricularAlumnoCurso()" />
+
+<br />
+<input type="submit" (click)="volver()" value="Volver" />

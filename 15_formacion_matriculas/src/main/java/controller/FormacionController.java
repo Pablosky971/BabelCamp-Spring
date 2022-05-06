@@ -52,10 +52,10 @@ public class FormacionController {
 		AlumnoDto alumno=service.validarUsuario(user, pwd);
 		if(alumno!=null) {
 			sesion.setAttribute("alumno", alumno);
-			return "menu";
+			return "index";
 		}else {
 			request.setAttribute("mensaje", "Usuario y/o contrase�a incorrectos");
-			return "login";
+			return "error";
 		}
 	}
 	@PostMapping("AltaCurso")

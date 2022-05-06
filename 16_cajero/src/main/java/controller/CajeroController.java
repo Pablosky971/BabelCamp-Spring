@@ -1,7 +1,7 @@
 package controller;
 
 
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dto.CuentaDto;
+
 import dto.MovimientoDto;
 import service.CajeroService;
 
@@ -27,8 +27,14 @@ public class CajeroController {
 	CajeroService service;
 	
 	@PostMapping(value="Login",produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody CuentaDto login(@RequestParam("numeroCuenta") int numeroCuenta) {
-		return service.validarCuenta(numeroCuenta);
+	public String login(@RequestParam("numeroCuenta") int numeroCuenta) {
+		if(service.validarCuenta(numeroCuenta)) {
+			return "index";
+		} else {
+			return "error";
+		}
+		
+			
 	}
 
 	@PostMapping(value="Ingreso",produces=MediaType.APPLICATION_JSON_VALUE)

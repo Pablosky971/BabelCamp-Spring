@@ -11,8 +11,8 @@ export class FormacionService {
 
   urlAlumnos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/Alumnos";
   urlCursos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/Cursos";
-  urlAlumnosCurso:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/AlumnosCurso"
-  urlCursoAlumnos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/CursoAlumnos"
+  urlAlumnosCurso:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/AlumnosCurso";
+  urlCursoAlumnos:string="http://localhost:8080/12_proyecto_formacion_spring_data_jpa/CursoAlumnos";
   
 
   cursos:string[]|undefined;
@@ -32,10 +32,10 @@ export class FormacionService {
   }
 
 
-  buscarAlumnosCurso(nombre:string) {
+  buscarAlumnosCurso(curso:string) {
 
     // El tipo indicado entre los diamantes, es el tipo de salida.
-    return this.http.get<Alumno[]>(this.urlAlumnosCurso,{params:{nombre:nombre}});
+    return this.http.get<Alumno[]>(this.urlAlumnosCurso,{params:{nombre:curso}});
   }
 
   buscarCursosAlumno(usuario:string) {

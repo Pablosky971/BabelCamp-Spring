@@ -23,36 +23,36 @@ public class TestCajeroService {
 	@Autowired
 	CajeroService service;
 	
-	@Test
-	void validarCuenta() {
-		assertNotNull(service.validarCuenta(1000));
-		assertNull(service.validarCuenta(666));
-		
-	}
-	
-	@Test
-	void ingreso() {
-		service.ingreso(200, 1000);
-		assertEquals(41767,service.validarCuenta(1000).getSaldo());
-		
-	}
-	
-	@Test
-	void extraccion() {
-		service.extraccion(200, 1000);
-		assertEquals(41567,service.validarCuenta(1000).getSaldo());
-		
-	}
-	
-	@Test
-	void transferencia() {
-		
-		service.transferencia(1, 1000, 1234);
-		assertEquals(41566,service.validarCuenta(1000).getSaldo());
-		assertEquals(571,service.validarCuenta(1234).getSaldo());
-		
-		
-	}
+//	@Test
+//	void validarCuenta() {
+//		assertNotNull(service.validarCuenta(1000));
+//		assertNull(service.validarCuenta(666));
+//		
+//	}
+//	
+//	@Test
+//	void ingreso() {
+//		service.ingreso(200, 1000);
+//		assertEquals(41767,service.validarCuenta(1000).getSaldo());
+//		
+//	}
+//	
+//	@Test
+//	void extraccion() {
+//		service.extraccion(200, 1000);
+//		assertEquals(41567,service.validarCuenta(1000).getSaldo());
+//		
+//	}
+//	
+//	@Test
+//	void transferencia() {
+//		
+//		service.transferencia(1, 1000, 1234);
+//		assertEquals(41566,service.validarCuenta(1000).getSaldo());
+//		assertEquals(571,service.validarCuenta(1234).getSaldo());
+//		
+//		
+//	}
 	
 //	@Test
 //	void movimientos() {

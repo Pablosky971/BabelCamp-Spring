@@ -4,8 +4,12 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +28,15 @@ public class Cliente {
 	private String nombre;
 	private String direccion;
 	private int telefono;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "titulares",
+	joinColumns = @JoinColumn(name = "idCliente", referencedColumnName = "dni"),
+	inverseJoinColumns = @JoinColumn(name = "idCuenta", referencedColumnName = "numeroCuenta"))
+	private List<Cuenta> cuentas;
+	
+	
 	
 	
 	

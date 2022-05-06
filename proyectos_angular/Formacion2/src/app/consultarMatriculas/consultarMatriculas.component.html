@@ -1,0 +1,28 @@
+<input  type="date" value="Fecha de Inicio" [(ngModel)]="fechaInicio" />
+
+    <input type="date" value="Fecha de Fin" [(ngModel)]="fechaFin" />
+
+    <input type="button" value="Buscar matriculas" (click)="consultarMatriculas()" />
+
+
+
+  <table border="2">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha Inicio</th>
+        <th>Usuario</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let matricula of matriculas">
+        <td>{{ matricula.cursoDto.nombre}}</td>
+        <td>{{ matricula.cursoDto.fechaInicio}}</td>
+        <td>{{matricula.alumnoDto.nombre }}</td>
+        <td>{{matricula.nota }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+<input type="submit" (click)="volver()" value="Volver" />

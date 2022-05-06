@@ -21,9 +21,10 @@ public class MovimientoDto {
 	
 	@Id
 	private int idMovimiento;
-	private double cantidad;
-	@JsonFormat(pattern="yyyy/MM/dd HH:mm:ss")
+	private int idCuenta;
+	@JsonFormat(pattern="yyyy/MM/dd")
 	private Date fecha;
+	private double cantidad;
 	private String operacion;
 	private CuentaDto cuenta;
 

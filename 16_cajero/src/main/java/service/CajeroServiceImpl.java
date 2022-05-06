@@ -41,14 +41,14 @@ public class CajeroServiceImpl implements CajeroService {
 	}
 
 	
-	public CuentaDto validarCuenta(int numeroCuenta) {
+	public boolean validarCuenta(int numeroCuenta) {
 		
 		Optional<Cuenta> cuenta = cuentasDao.findById(numeroCuenta);
 		
-		if(cuenta.isPresent())
-		return conversor.cuentaToDto(cuenta.get());
-		
-		return null;
+		if(cuenta.isPresent()) {
+		return true;
+		}
+		return false;
 		
 	}
 
@@ -56,15 +56,11 @@ public class CajeroServiceImpl implements CajeroService {
 	public void ingreso(double cantidad, int numeroCuenta) {
 		
 		Optional<Cuenta> c = cuentasDao.findById(numeroCuenta);
-		Movimiento m = new Movimiento();
-		m.setCantidad(cantidad);
-		m.setFecha(new Date());
-		m.setOperacion("ingreso");
-		
 		if(c.isPresent()) {
-		m.setCuenta(c.get());
+		Movimiento m = new Movimiento(numeroCuenta, new Date(), cantidad, "ingreso");
+		movimientosDao.save(m);
 		}
-		 movimientosDao.save(m);
+		 
 		 cuentasDao.actualizarSumaCantidad(cantidad, numeroCuenta);
 		
 	}
@@ -73,15 +69,11 @@ public class CajeroServiceImpl implements CajeroService {
 	public void extraccion(double cantidad, int numeroCuenta) {
 		
 		Optional<Cuenta> c = cuentasDao.findById(numeroCuenta);
-		Movimiento m = new Movimiento();
-		m.setCantidad(cantidad);
-		m.setFecha(new Date());
-		m.setOperacion("extraccion");
-		
 		if(c.isPresent()) {
-		m.setCuenta(c.get());
-		}
-		 movimientosDao.save(m);
+			Movimiento m = new Movimiento(numeroCuenta, new Date(), cantidad, "extraccion");
+			movimientosDao.save(m);
+			}
+		
 		 cuentasDao.actualizarRestaCantidad(cantidad, numeroCuenta);
 		
 	}
@@ -91,11 +83,9 @@ public class CajeroServiceImpl implements CajeroService {
 	@Transactional
 	public void transferencia(double cantidad, int numeroCuentaRemitente, int numeroCuentaDestinatario) {
 		
-		this.ingreso(cantidad, numeroCuentaDestinatario);
-		this.extraccion(cantidad, numeroCuentaRemitente);
-		
-		
-		
+		ingreso(cantidad, numeroCuentaDestinatario);
+		extraccion(cantidad, numeroCuentaRemitente);
+			
 	}
 
 

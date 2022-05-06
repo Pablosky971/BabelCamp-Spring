@@ -8,7 +8,7 @@ import dto.MovimientoDto;
 
 public interface CajeroService {
 	
-	CuentaDto validarCuenta(int numeroCuenta);
+	boolean validarCuenta(int numeroCuenta);
 	void ingreso(double cantidad, int numeroCuenta);
 	void extraccion(double cantidad, int numeroCuenta);
 	void transferencia(double cantidad, int numeroCuentaRemitente, int numeroCuentaDestinatario);

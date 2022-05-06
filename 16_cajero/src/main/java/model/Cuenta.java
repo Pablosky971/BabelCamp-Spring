@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,6 +31,8 @@ public class Cuenta {
 	@JsonIgnore
 	List<Movimiento> movimientos;
 
+	@ManyToMany(mappedBy="cuentas")
+	private List<Cliente> clientes;
 
 	public Cuenta(int numeroCuenta, double saldo, String tipoCuenta) {
 		this.numeroCuenta = numeroCuenta;

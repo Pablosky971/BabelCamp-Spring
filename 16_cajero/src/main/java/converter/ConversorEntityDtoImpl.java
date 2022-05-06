@@ -20,7 +20,7 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 
 	public Cliente dtoToCliente(ClienteDto dto) {
 		
-		return new Cliente(dto.getDni(),dto.getNombre(),dto.getDireccion(),dto.getTelefono());
+		return new Cliente(dto.getDni(),dto.getNombre(),dto.getDireccion(),dto.getTelefono(), null);
 	}
 
 
@@ -38,12 +38,12 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 
 	public MovimientoDto movimientoToDto(Movimiento movimiento) {
 	
-		return new MovimientoDto(movimiento.getIdMovimiento(),movimiento.getCantidad(),movimiento.getFecha(),movimiento.getOperacion(),cuentaToDto(movimiento.getCuenta()));
+		return new MovimientoDto(movimiento.getIdMovimiento(),movimiento.getIdCuenta(),movimiento.getFecha(),movimiento.getCantidad(),movimiento.getOperacion(),cuentaToDto(movimiento.getCuenta()));
 	}
 
 	public Movimiento dtoToMovimiento(MovimientoDto dto) {
 		
-		return new Movimiento(dto.getIdMovimiento(),dto.getCantidad(),dto.getFecha(),dto.getOperacion(), dtoToCuenta(dto.getCuenta()));
+		return new Movimiento(dto.getIdMovimiento(),dto.getIdCuenta(),dto.getFecha(),dto.getCantidad(),dto.getOperacion(), dtoToCuenta(dto.getCuenta()));
 	}
 
 	
